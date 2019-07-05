@@ -1,0 +1,179 @@
+#:kivy 1.11.0
+
+ScreenManager:
+    MainScreen:
+    MenuScreen:
+	
+
+<MainScreen>:
+
+	name: 'main_screen'
+	pwrButton: pwrButton
+	dirLabel: dirLabel
+	speedLabel: speedLabel
+	angleLabel: angleLabel
+	runningLabel: runningLabel
+	
+    BoxLayout:
+        orientation: 'horizontal'
+        size: root.size
+        spacing: 5
+
+		BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+			
+			Button:
+				id: pwrButton
+				text: "ON/OFF"			
+				on_release: app.button_on_off()
+
+			Label:
+				id: dirLabel
+				size_hint_y: 0.3
+				text: 'Direction: LEFT'
+				
+			Button:
+				text: "Change Direction"
+				on_release: app.changeDir()
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: 'Faster'
+                on_release: app.faster()
+				
+			Label:
+				id: speedLabel
+				size_hint_y: 0.3
+				text: 'Speed: 0'
+
+            Button:
+                text: 'Slower'
+                on_release: app.slower()
+				
+		
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: 'IncAngle'
+                on_release: app.angleInc()
+				
+			Label:
+				id: angleLabel
+				size_hint_y: 0.3
+				text: 'Angle: 0'
+
+            Button:
+                text: 'DecAngle'
+                on_release: app.angleDec()
+
+
+		BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+				text: 'Quit'
+				on_release: app.quit()
+				
+			Label:
+				id: runningLabel
+				size_hint_y: 0.3
+				text: ''
+
+
+            Button:
+                text: 'Menu'
+                on_release: app.root.current = 'menu_screen'		
+				
+<MenuScreen>:
+
+	name: 'menu_screen'
+	selPrLabel: selPrLabel
+	prNameLabel: prNameLabel
+	prDurLabel: prDurLabel
+	wsLabel: wsLabel
+	
+    BoxLayout:
+        orientation: 'horizontal'
+        size: root.size
+        spacing: 5
+
+		BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+			
+			Button:
+				text: "prog_1"			
+				on_release: app.select_prog("prog_1")
+
+			Label:
+				id: selPrLabel
+				size_hint_y: 0.3
+				text: 'Selected: '
+				
+			Button:
+				text: "prog_2"			
+				on_release: app.select_prog("prog_2")
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: "prog_3"			
+				on_release: app.select_prog("prog_3")
+
+			Label:
+				id: prNameLabel
+				size_hint_y: 0.3
+				text: ''			
+
+            Button:
+                text: "prog_4"			
+				on_release: app.select_prog("prog_4")
+				
+		
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: 'Run Program'
+                on_release: app.run_prog()
+				
+			Label:
+				id: prDurLabel
+				size_hint_y: 0.3
+				text: ''
+
+            Button:
+                text: 'Stop Program'
+                on_release: app.stop_prog()
+
+
+		BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+				text: 'return to main screen'
+				on_release: app.root.current = 'main_screen'
+				
+			Label:
+				id: wsLabel
+				size_hint_y: 0.3
+				text: ''
+
+            ToggleButton:
+                text: 'Websocket Server'
+                on_release: app.connectExt()	   
+
+
+
+
